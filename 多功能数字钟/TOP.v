@@ -5,17 +5,30 @@ module TOP(
     input en,
     input adjust_hour,
     input adjust_minute,
-    output  [5:0] an,   //片选
+    output  [7:0] an,   //片选
     output  [7:0] sseg,  //段选
     output tweet //整点报时
     );
-	   
+	reg [27:0] cnt;
+    reg out_1hz;
+    always@(posedge clk or negedge rst_n)
+        if(~rst_n) begin
+            cnt <= 0;
+            out_1hz <= 0;
+        end
+        else if(cnt >= 50000000) begin
+            cnt <= 0;
+            out_1hz <= ~out_1hz;
+            end
+        else
+            cnt<=cnt+1;
+            
     wire [7:0] hour;
 	wire [7:0] min;
 	wire [7:0] sec;
 
 	digital_clock inst_digital_clock(
-		.clk(clk),
+		.clk(out_1hz),
 		.rst_n(rst_n),
 		.en(en),
 		.adjust_hour(adjust_hour),
@@ -58,6 +71,5 @@ module TOP(
 		.dp_in(1),
 		.an(an),
 		.sseg(sseg)
-
 		);
 endmodule

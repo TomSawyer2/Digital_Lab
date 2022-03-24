@@ -1,24 +1,4 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 2022/03/16 20:02:20
-// Design Name: 
-// Module Name: motor
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
 
 module motor(
     input M,
@@ -26,9 +6,23 @@ module motor(
     output reg [2:0] state
     );
     parameter S0=3'b100, S1=3'b101, S2=3'b001, S3=3'b011, S4=3'b010, S5=3'b110, S6=3'b000, S7=3'b111;
-    always @(negedge CP or negedge CR)
+    reg [27:0] cnt;
+    reg out_1hz;
+    always@(posedge CP or negedge CR)
+    if(~CR) begin
+        cnt <= 0;
+        out_1hz <= 0;
+    end
+    else if(cnt >= 24999999) begin
+        cnt<=0;
+        out_1hz <= ~out_1hz;
+        end
+    else
+        cnt <= cnt+1;
+    
+    always @(negedge out_1hz or negedge CR)
         begin
-            if(~CR) begin state <= S0; end // CRÏÂ½µÑØÉèÖÃS0Îª³õÌ¬
+            if(~CR) begin state <= S0; end
             else 
                 case (state)
                     S0: begin; if (M == 1) state <= S1; else state <= S5; end

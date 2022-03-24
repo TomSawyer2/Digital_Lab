@@ -9,7 +9,6 @@ module digital_clock(
 	output [7:0] min,
 	output [7:0] sec,
 	output tweet
-
 	);
  
  
