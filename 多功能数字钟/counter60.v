@@ -1,4 +1,4 @@
-//Ä£60¼ÆÊýÆ÷µÄVerilog HDLÉè¼Æ
+//Ä£60ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Verilog HDLï¿½ï¿½ï¿½
 module counter60(clk, rst_n, en, adjust_minute,, isMin, dout, co);
 
 input clk, rst_n, en, adjust_minute, isMin;
@@ -7,13 +7,13 @@ output co;
 wire co10_1, co10, co6;
 wire[3:0] dout10, dout6;
  
-counter10 inst_counter10(.clk(clk), .rst_n(rst_n), .en(en), .adjust_minute(adjust_minute), .isMin(isMin), .dout(dout10), .co(co10_1)); //Ä£10¼ÆÊýÆ÷µÄ½øÎ»Îªco10_1
-and u3(co10, 1,co10_1); //co10_1ÓëenµÄÓëÎªco10
+counter10 inst_counter10(.clk(clk), .rst_n(rst_n), .en(en), .adjust_minute(adjust_minute), .isMin(isMin), .dout(dout10), .co(co10_1)); //Ä£10ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä½ï¿½Î»Îªco10_1
+and u3(co10, en,co10_1); //co10_1ï¿½ï¿½enï¿½ï¿½ï¿½ï¿½Îªco10
 //and(col0, col0_1, 1);
-counter6 inst_counter6(.clk(clk), .rst_n(rst_n), .en(co10), .dout(dout6), .co(co6)); //co10_1ÓëenµÄÓëÎªco10,×÷ÎªÄ£6¼ÆÊýÆ÷µÄÊ¹ÄÜÐÅºÅ
-and u4(co, co10, co6); //Ä£6¼ÆÊýÆ÷µÄ½øÎ»ºÍÄ£6µÄÊ¹ÄÜÐÅºÅco10µÄÓë×÷ÎªÄ£60¼ÆÊýÆ÷µÄ½øÎ»
+counter6 inst_counter6(.clk(clk), .rst_n(rst_n), .en(co10), .dout(dout6), .co(co6)); //co10_1ï¿½ï¿½enï¿½ï¿½ï¿½ï¿½Îªco10,ï¿½ï¿½ÎªÄ£6ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½Åºï¿½
+and u4(co, co10, co6); //Ä£6ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä½ï¿½Î»ï¿½ï¿½Ä£6ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½Åºï¿½co10ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªÄ£60ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä½ï¿½Î»
  
-assign dout = {dout6,dout10}; //Ä£60¼ÆÊýÆ÷µÄÊä³ö£¬¸ßÎ»ÎªÄ£6¼ÆÊýÆ÷µÄÊä³ö£¬µÍÎ»ÎªÄ£10¼ÆÊýÆ÷µÄÊä³ö£¬¶Á·¨ÊÇ8421BCDÂë¶Á·¨
+assign dout = {dout6,dout10}; //Ä£60ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ÎªÄ£6ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ÎªÄ£10ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½8421BCDï¿½ï¿½ï¿½ï¿½ï¿½
  
 endmodule
  

@@ -10,8 +10,11 @@ set_property IOSTANDARD LVCMOS33 [get_ports en]
 set_property LOC P4 [get_ports adjust_hour]
 set_property IOSTANDARD LVCMOS33 [get_ports adjust_hour]
 
-set_property LOC P3 [get_ports adjust_minute]
+set_property LOC R3 [get_ports adjust_minute]
 set_property IOSTANDARD LVCMOS33 [get_ports adjust_minute]
+
+set_property LOC P3 [get_ports adjust_minute]
+set_property IOSTANDARD LVCMOS33 [get_ports adjust_minute_10]
 
 set_property LOC N6 [get_ports an[0]]
 set_property IOSTANDARD LVCMOS33 [get_ports an[0]]
