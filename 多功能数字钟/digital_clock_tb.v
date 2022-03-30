@@ -5,6 +5,7 @@ module digital_clock_tb();
 	reg en;
 	reg adjust_hour;
 	reg adjust_minute;
+	reg adjust_minute_10;
 	wire [7:0] hour;
 	wire [7:0] min;
 	wire [7:0] sec;
@@ -24,6 +25,11 @@ module digital_clock_tb();
        adjust_minute = 0;
        forever #150 adjust_minute = ~adjust_minute;
     end
+    
+    initial begin
+           adjust_minute = 0;
+           forever #150 adjust_minute_10 = ~adjust_minute_10;
+        end
 
 	initial begin
 		rst_n = 0;
@@ -42,6 +48,7 @@ module digital_clock_tb();
 		.en(en),
 		.adjust_hour(adjust_hour),
 		.adjust_minute(adjust_minute),
+		.adjust_minute_10(adjust_minute_10),
 		.hour(hour),
 		.min(min),
 		.sec(sec),
